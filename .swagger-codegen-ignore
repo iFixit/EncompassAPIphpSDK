@@ -1,0 +1,9 @@
+# Don't generate docs, they don't actually document the methods,
+# only the attribute names, which doesn't match the php interface.
+EncompassAPI/docs/**
+
+# The tests are all empty anyway, so let's not bother
+EncompassAPI/test/**
+
+# We don't use this
+EncompassAPI/git_push.sh
