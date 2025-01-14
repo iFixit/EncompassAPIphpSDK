@@ -242,7 +242,7 @@ class InlineResponse2008DataRecords implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['open'] = isset($data['open']) ? $data['open'] : null;
         $this->container['reference_number1'] = isset($data['reference_number1']) ? $data['reference_number1'] : null;

@@ -172,7 +172,7 @@ class InlineResponse2004Data implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['assembly'] = isset($data['assembly']) ? $data['assembly'] : null;
         $this->container['parts'] = isset($data['parts']) ? $data['parts'] : null;

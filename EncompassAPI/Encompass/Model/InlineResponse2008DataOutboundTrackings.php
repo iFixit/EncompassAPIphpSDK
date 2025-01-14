@@ -172,7 +172,7 @@ class InlineResponse2008DataOutboundTrackings implements ModelInterface, ArrayAc
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['tracking_number'] = isset($data['tracking_number']) ? $data['tracking_number'] : null;
         $this->container['link'] = isset($data['link']) ? $data['link'] : null;

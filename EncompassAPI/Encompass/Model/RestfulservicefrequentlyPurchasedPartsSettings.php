@@ -187,7 +187,7 @@ class RestfulservicefrequentlyPurchasedPartsSettings implements ModelInterface, 
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['json_user'] = isset($data['json_user']) ? $data['json_user'] : null;
         $this->container['json_password'] = isset($data['json_password']) ? $data['json_password'] : null;
