@@ -1,5 +1,5 @@
 {
-   "packagePath": "EncompassAPI",
-   "srcBasePath": "Encompass",
+   "packageName": "EncompassAPI",
+   "srcBasePath": "EncompassAPI/Encompass",
    "invokerPackage": "Encompass\\SDK"
 }
