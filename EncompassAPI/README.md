@@ -20,11 +20,11 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+      "url": "https://github.com/git_user_id/git_repo_id.git"
     }
   ],
   "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+    "git_user_id/git_repo_id": "*@dev"
   }
 }
 ```
@@ -167,6 +167,20 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling APIApi->restfulserviceSearchPost: ', $e->getMessage(), PHP_EOL;
 }
+
+$apiInstance = new Encompass\SDK\Api\APIApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = new \Encompass\SDK\Model\RestfulserviceShiptoBody(); // \Encompass\SDK\Model\RestfulserviceShiptoBody | 
+
+try {
+    $result = $apiInstance->restfulserviceShiptoPost($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling APIApi->restfulserviceShiptoPost: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
@@ -184,6 +198,7 @@ Class | Method | HTTP request | Description
 *APIApi* | [**restfulserviceModelPartListPost**](docs/Api/APIApi.md#restfulservicemodelpartlistpost) | **POST** /restfulservice/modelPartList | Model Part List
 *APIApi* | [**restfulservicePartsInformationPost**](docs/Api/APIApi.md#restfulservicepartsinformationpost) | **POST** /restfulservice/partsInformation | Parts Information
 *APIApi* | [**restfulserviceSearchPost**](docs/Api/APIApi.md#restfulservicesearchpost) | **POST** /restfulservice/search | Search
+*APIApi* | [**restfulserviceShiptoPost**](docs/Api/APIApi.md#restfulserviceshiptopost) | **POST** /restfulservice/shipto | Customer Ship To list
 *PostOrderApi* | [**restfulserviceCancelOrderPost**](docs/Api/PostOrderApi.md#restfulservicecancelorderpost) | **POST** /restfulservice/cancelOrder | cancel an open order
 *PostOrderApi* | [**restfulserviceOrderStatusPost**](docs/Api/PostOrderApi.md#restfulserviceorderstatuspost) | **POST** /restfulservice/orderStatus | Get Order Status
 *PostOrderApi* | [**restfulserviceReturnRequestPost**](docs/Api/PostOrderApi.md#restfulservicereturnrequestpost) | **POST** /restfulservice/returnRequest | Create an return request
@@ -199,17 +214,20 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/Model/InlineResponse200.md)
  - [InlineResponse2001](docs/Model/InlineResponse2001.md)
  - [InlineResponse20010](docs/Model/InlineResponse20010.md)
- - [InlineResponse20010Data](docs/Model/InlineResponse20010Data.md)
- - [InlineResponse20010DataReturnAddress](docs/Model/InlineResponse20010DataReturnAddress.md)
- - [InlineResponse20010DataReturnService](docs/Model/InlineResponse20010DataReturnService.md)
+ - [InlineResponse20010Status](docs/Model/InlineResponse20010Status.md)
  - [InlineResponse20011](docs/Model/InlineResponse20011.md)
  - [InlineResponse20011Data](docs/Model/InlineResponse20011Data.md)
+ - [InlineResponse20011DataReturnAddress](docs/Model/InlineResponse20011DataReturnAddress.md)
+ - [InlineResponse20011DataReturnService](docs/Model/InlineResponse20011DataReturnService.md)
+ - [InlineResponse20012](docs/Model/InlineResponse20012.md)
+ - [InlineResponse20012Data](docs/Model/InlineResponse20012Data.md)
  - [InlineResponse2001Data](docs/Model/InlineResponse2001Data.md)
  - [InlineResponse2001DataModels](docs/Model/InlineResponse2001DataModels.md)
  - [InlineResponse2001DataParts](docs/Model/InlineResponse2001DataParts.md)
  - [InlineResponse2002](docs/Model/InlineResponse2002.md)
  - [InlineResponse2002Data](docs/Model/InlineResponse2002Data.md)
  - [InlineResponse2002DataParts](docs/Model/InlineResponse2002DataParts.md)
+ - [InlineResponse2002DataSymptoms](docs/Model/InlineResponse2002DataSymptoms.md)
  - [InlineResponse2003](docs/Model/InlineResponse2003.md)
  - [InlineResponse2003Data](docs/Model/InlineResponse2003Data.md)
  - [InlineResponse2003DataAssemblies](docs/Model/InlineResponse2003DataAssemblies.md)
@@ -225,21 +243,23 @@ Class | Method | HTTP request | Description
  - [InlineResponse2005DataAvailabilityByLocation](docs/Model/InlineResponse2005DataAvailabilityByLocation.md)
  - [InlineResponse2005DataCompatibleModels](docs/Model/InlineResponse2005DataCompatibleModels.md)
  - [InlineResponse2005DataParts](docs/Model/InlineResponse2005DataParts.md)
+ - [InlineResponse2005DataSymptoms](docs/Model/InlineResponse2005DataSymptoms.md)
  - [InlineResponse2006](docs/Model/InlineResponse2006.md)
  - [InlineResponse2006Data](docs/Model/InlineResponse2006Data.md)
  - [InlineResponse2006DataParts](docs/Model/InlineResponse2006DataParts.md)
  - [InlineResponse2007](docs/Model/InlineResponse2007.md)
+ - [InlineResponse2007Data](docs/Model/InlineResponse2007Data.md)
+ - [InlineResponse2007DataAddresses](docs/Model/InlineResponse2007DataAddresses.md)
  - [InlineResponse2008](docs/Model/InlineResponse2008.md)
- - [InlineResponse2008Data](docs/Model/InlineResponse2008Data.md)
- - [InlineResponse2008DataCarrierActivity](docs/Model/InlineResponse2008DataCarrierActivity.md)
- - [InlineResponse2008DataCustomOrderFields](docs/Model/InlineResponse2008DataCustomOrderFields.md)
- - [InlineResponse2008DataCustomPartFields](docs/Model/InlineResponse2008DataCustomPartFields.md)
- - [InlineResponse2008DataOutboundTrackings](docs/Model/InlineResponse2008DataOutboundTrackings.md)
- - [InlineResponse2008DataParts](docs/Model/InlineResponse2008DataParts.md)
- - [InlineResponse2008DataRecords](docs/Model/InlineResponse2008DataRecords.md)
- - [InlineResponse2008DataSerialNumbers](docs/Model/InlineResponse2008DataSerialNumbers.md)
  - [InlineResponse2009](docs/Model/InlineResponse2009.md)
- - [InlineResponse2009Status](docs/Model/InlineResponse2009Status.md)
+ - [InlineResponse2009Data](docs/Model/InlineResponse2009Data.md)
+ - [InlineResponse2009DataCarrierActivity](docs/Model/InlineResponse2009DataCarrierActivity.md)
+ - [InlineResponse2009DataCustomOrderFields](docs/Model/InlineResponse2009DataCustomOrderFields.md)
+ - [InlineResponse2009DataCustomPartFields](docs/Model/InlineResponse2009DataCustomPartFields.md)
+ - [InlineResponse2009DataOutboundTrackings](docs/Model/InlineResponse2009DataOutboundTrackings.md)
+ - [InlineResponse2009DataParts](docs/Model/InlineResponse2009DataParts.md)
+ - [InlineResponse2009DataRecords](docs/Model/InlineResponse2009DataRecords.md)
+ - [InlineResponse2009DataSerialNumbers](docs/Model/InlineResponse2009DataSerialNumbers.md)
  - [InlineResponse200Data](docs/Model/InlineResponse200Data.md)
  - [InlineResponse200DataManufacturers](docs/Model/InlineResponse200DataManufacturers.md)
  - [InlineResponse200Status](docs/Model/InlineResponse200Status.md)
@@ -287,6 +307,7 @@ Class | Method | HTTP request | Description
  - [RestfulservicePartsInformationBody](docs/Model/RestfulservicePartsInformationBody.md)
  - [RestfulserviceReturnRequestBody](docs/Model/RestfulserviceReturnRequestBody.md)
  - [RestfulserviceSearchBody](docs/Model/RestfulserviceSearchBody.md)
+ - [RestfulserviceShiptoBody](docs/Model/RestfulserviceShiptoBody.md)
  - [RestfulservicebrandListSettings](docs/Model/RestfulservicebrandListSettings.md)
  - [RestfulservicecancelOrderData](docs/Model/RestfulservicecancelOrderData.md)
  - [RestfulservicecancelOrderDataParts](docs/Model/RestfulservicecancelOrderDataParts.md)
@@ -316,6 +337,7 @@ Class | Method | HTTP request | Description
  - [RestfulservicereturnRequestSettings](docs/Model/RestfulservicereturnRequestSettings.md)
  - [RestfulservicesearchData](docs/Model/RestfulservicesearchData.md)
  - [RestfulservicesearchSettings](docs/Model/RestfulservicesearchSettings.md)
+ - [RestfulserviceshiptoSettings](docs/Model/RestfulserviceshiptoSettings.md)
 
 ## Documentation For Authorization
 
