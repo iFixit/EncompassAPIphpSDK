@@ -182,7 +182,7 @@ class RestfulservicepartsInformationData implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['base_pn'] = isset($data['base_pn']) ? $data['base_pn'] : null;
         $this->container['search_mfg_code'] = isset($data['search_mfg_code']) ? $data['search_mfg_code'] : null;

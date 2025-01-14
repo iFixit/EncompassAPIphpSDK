@@ -252,7 +252,7 @@ class RestfulservicecreateOrderData implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['customer_type'] = isset($data['customer_type']) ? $data['customer_type'] : null;
         $this->container['use_customer_cross'] = isset($data['use_customer_cross']) ? $data['use_customer_cross'] : null;

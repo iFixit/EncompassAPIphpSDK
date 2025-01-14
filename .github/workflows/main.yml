@@ -1,0 +1,27 @@
+name: PHP CodeSniffer
+
+on: [pull_request]
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4.1.1
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3.2'
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Run PHP CodeSniffer
+      id: phpcs
+      run: vendor/bin/phpcs --standard=ruleset.xml EncompassAPI/
+
+    - name: Output message on failure
+      if: failure()
+      run: echo "Run \`vendor/bin/phpcbf --standard=ruleset.xml EncompassAPI/\` to fix the issues."

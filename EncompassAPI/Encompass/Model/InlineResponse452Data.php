@@ -192,7 +192,7 @@ class InlineResponse452Data implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['variation_name'] = isset($data['variation_name']) ? $data['variation_name'] : null;
         $this->container['variation_image'] = isset($data['variation_image']) ? $data['variation_image'] : null;
