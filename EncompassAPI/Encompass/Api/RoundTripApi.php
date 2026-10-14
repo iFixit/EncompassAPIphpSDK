@@ -127,12 +127,7 @@ class RoundTripApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+                throw ApiException::fromRequestException($e);
             }
 
             $statusCode = $response->getStatusCode();
@@ -209,7 +204,12 @@ class RoundTripApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response = ApiException::errorResponseFrom($exception);
+                    if ($response === null) {
+                        throw $exception instanceof RequestException
+                            ? ApiException::fromRequestException($exception)
+                            : $exception;
+                    }
                     $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
@@ -371,12 +371,7 @@ class RoundTripApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+                throw ApiException::fromRequestException($e);
             }
 
             $statusCode = $response->getStatusCode();
@@ -489,7 +484,12 @@ class RoundTripApi
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response = ApiException::errorResponseFrom($exception);
+                    if ($response === null) {
+                        throw $exception instanceof RequestException
+                            ? ApiException::fromRequestException($exception)
+                            : $exception;
+                    }
                     $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
