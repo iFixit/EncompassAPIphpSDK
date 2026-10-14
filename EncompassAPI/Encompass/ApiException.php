@@ -28,6 +28,10 @@
 namespace Encompass\SDK;
 
 use \Exception;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\TooManyRedirectsException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * ApiException Class Doc Comment
@@ -68,12 +72,58 @@ class ApiException extends Exception
      * @param int           $code            HTTP status code
      * @param string[]|null $responseHeaders HTTP response header
      * @param mixed         $responseBody    HTTP decoded body of the server response either as \stdClass or string
+     * @param \Throwable|null $previous       The exception that caused this one
      */
-    public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null)
+    public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null, ?\Throwable $previous = null)
     {
-        parent::__construct($message, $code);
+        parent::__construct($message, $code, $previous);
         $this->responseHeaders = $responseHeaders;
         $this->responseBody = $responseBody;
+    }
+
+    /**
+     * Wraps a Guzzle exception thrown while sending a request.
+     *
+     * An HTTP error response keeps its status code, headers and body. Any other
+     * failure gets code 0 and keeps the Guzzle exception as its previous, so
+     * callers can tell a dropped or timed-out transfer from an API answer.
+     *
+     * @param RequestException $e
+     *
+     * @return ApiException
+     */
+    public static function fromRequestException(RequestException $e)
+    {
+        $response = self::errorResponseFrom($e);
+        if ($response === null) {
+            return new self("[0] {$e->getMessage()}", 0, null, null, $e);
+        }
+        return new self(
+            "[{$e->getCode()}] {$e->getMessage()}",
+            $e->getCode(),
+            $response->getHeaders(),
+            $response->getBody()->getContents()
+        );
+    }
+
+    /**
+     * Returns the response of a complete HTTP error answer, or null when the
+     * request failed without one.
+     *
+     * Guzzle 8 only has getResponse() on ResponseException, and also attaches
+     * a partial response to transfers that fail mid-body (e.g. a read
+     * timeout); those aren't answers from the API, so they return null too.
+     *
+     * @param \Throwable $e
+     *
+     * @return ResponseInterface|null
+     */
+    public static function errorResponseFrom(\Throwable $e)
+    {
+        if ($e instanceof BadResponseException || $e instanceof TooManyRedirectsException) {
+            return $e->getResponse();
+        }
+        return null;
     }
 
     /**
